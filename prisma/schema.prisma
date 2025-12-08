@@ -31,8 +31,8 @@ model User {
   name     String
   password String
 
-  group_id BigInt
-  group    Group @relation(fields: [group_id], references: [id], onDelete: Cascade)
+  group_id BigInt?
+  group    Group? @relation(fields: [group_id], references: [id], onDelete: Cascade)
 
   ownedGroup Group? @relation("GroupOwner")
 
