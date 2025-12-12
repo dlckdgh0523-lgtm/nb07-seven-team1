@@ -7,25 +7,25 @@
 // 이미지 멀터 만들기
 //헬퍼 사용 api 명세를 도저히 복잡해서 여기서는 못따라감
 //클래스 사용, 유효성 검사,  완료 스키마 변경요청 .. 안된다면 내꺼 변경 가능성 높은것들 주석표시
-//헬퍼js 사용시 api test 잘나오느것 확인
-//
+//헬퍼js 사용시 api test 잘나오느것 확인 o !
+//entity 나누기 , 커스텀에러 적용
+// 헬퍼 사용 확인 ooooooo 성공
+//스키마 그룹클래스에 맞추기 [일단 대기 ]
 import { formatGroupResponse } from "../../utils/helpers.js";
 import {
   BadRequestError,
   NotFoundError,
   UnauthorizedError,
-  ConflictError,
 } from "../../errors/customError.js";
-import { isEntityName } from "typescript";
 import { groupEntity } from "../../entitys/groupEntitys.js";
 const entity = new groupEntity();
 
 export const createGroup = async (req, res, next) => {
   try {
     const {
-      owner_id, /////////////// ////////////////////////////////////////////////////////////
-      ownerNickname, ///////////////////////////////////////////////////////////////////////////
-      name, ///////////////////////////////////////////////////////////////////////////
+      owner_id,
+      ownerNickname,
+      name,
       tags,
       goalRep,
       photoUrl,
@@ -42,9 +42,9 @@ export const createGroup = async (req, res, next) => {
 
     const newGroup = await groupEntity.create({
       data: {
-        owner_id, ////////////////////////////////////////////////////////////
-        ownerNickname, /////////////////////////////////////////////
-        name, ////////////////////////////////////////////////////////////
+        owner_id,
+        ownerNickname,
+        name,
         tags,
         goalRep,
         photoUrl,
@@ -59,10 +59,10 @@ export const createGroup = async (req, res, next) => {
     const response = {
       ...formatGroupResponse(newGroup),
       owner: {
-        id: owner_id, /////////////////////////////////////////////
-        nickname: ownerNickname, /////////////////////////////////////////////
-        createdAt: Date.now(), /////////////////////////////////////////////
-        updatedAt: Date.now(), /////////////////////////////////////////////
+        id: owner_id,
+        nickname: ownerNickname,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       },
       participants: [],
       badges: [],
@@ -134,7 +134,7 @@ export const patchGroup = async (req, res, next) => {
     const { password, ...dataToUpdate } = req.body;
 
     const group = await groupEntity.findGroup({
-      id: Number(groupId), ///////////////
+      id: Number(groupId),
     });
 
     if (!group) throw new NotFoundError("존재하지 않는 그룹입니다.");
