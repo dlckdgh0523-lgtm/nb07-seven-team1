@@ -1,4 +1,3 @@
-// (참고) 클래스 없이 함수만 가져올 때
 import express from "express";
 import {
   createGroup,
