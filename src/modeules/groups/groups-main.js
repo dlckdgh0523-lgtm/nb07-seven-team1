@@ -17,7 +17,7 @@ import {
   ConflictError,
 } from "../../errors/customError.js";
 import { isEntityName } from "typescript";
-import { groupEntity } from "../../entitis/groupEntitis.js";
+import { groupEntity } from "../../entitys/groupEntitys.js";
 const entity = new groupEntity();
 
 export const createGroup = async (req, res, next) => {
